@@ -1,0 +1,67 @@
+          token         lexeme          value
+
+            int            int
+             id              f             38
+         lparen              (
+         rparen              )
+         lbrace              {
+            int            int
+             id              a             33
+           semi              ;
+             id              a             33
+            eql              =
+            num              0
+           semi              ;
+          while          while
+         lparen              (
+             id              a             33
+            lss              <
+            num             10
+         rparen              )
+         lbrace              {
+             id              a             33
+            mul              *
+            eql              =
+            num              2
+           semi              ;
+         rbrace              }
+         return         return
+             id              a             33
+           semi              ;
+         rbrace              }
+            int            int
+           main           main
+         lparen              (
+         rparen              )
+         lbrace              {
+            int            int
+             id              a             33
+           semi              ;
+             id              a             33
+            eql              =
+            num              0
+           semi              ;
+             if             if
+         lparen              (
+             id              a             33
+          equal             ==
+            num              0
+         rparen              )
+         lbrace              {
+            int            int
+             id              a             33
+           semi              ;
+            int            int
+             id              b             34
+           semi              ;
+             id              a             33
+            eql              =
+             id              a             33
+            add              +
+            num              1
+           semi              ;
+         rbrace              }
+         return         return
+            num              0
+           semi              ;
+         rbrace              }
