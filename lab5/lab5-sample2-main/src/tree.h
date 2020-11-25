@@ -18,13 +18,32 @@ enum NodeType
 enum OperatorType
 {
     OP_EQ,  // ==
+    OP_LT,  // <
+    OP_LE,  // <=
+    OP_GT,  //>
+    OP_GE,  //>=
+    OP_NE,  //!=
+
+    OP_ADD, //\+
+    OP_MINUS, //\-
+    OP_MULTI, //\*
+    OP_DIV,   //\/
+    OP_MOD,   //\%
+
+    OP_NOT, //
+    OP_AND, //&&
+    OP_OR   //\|\|
 };
 
 enum StmtType {
     STMT_SKIP,
     STMT_DECL,
+    STMT_IF,
+    STMT_WHILE
 }
 ;
+
+static int NodeIndex = 0;
 
 struct TreeNode {
 public:
