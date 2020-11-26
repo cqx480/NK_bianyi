@@ -73,29 +73,29 @@ void TreeNode::printNodeInfo() {
         break;
 
     case NODE_VAR:
-        std::cout << "lno@" << this->lineno << "\t@" << this->nodeID
+        cout << "lno@" << this->lineno << "\t@" << this->nodeID
             << " variable varname: " << this->var_name;
         cout << endl;
         break;
 
     case NODE_EXPR:
-        std::cout << "lno@" << this->lineno << "\t@" << this->nodeID
+        cout << "lno@" << this->lineno << "\t@" << this->nodeID
             << " expression";
         this->printChildrenId();
         cout << endl;
         break;
 
     case NODE_STMT:
-        std::cout << "lno@" << this->lineno << "\t@" << this->nodeID
+        cout << "lno@" << this->lineno << "\t@" << this->nodeID
             << " " << "statement";
         this->printChildrenId();
         //print statement type
-        std::cout << " stmt:" << this->sType2String(this->stype);
+        cout << " stmt:" << this->sType2String(this->stype);
         cout << endl;
         break;
 
     case NODE_TYPE:
-        std::cout << "lno@" << this->lineno << "\t@" << this->nodeID
+        cout << "lno@" << this->lineno << "\t@" << this->nodeID
             << " type type:" << this->type->getTypeInfo();
         cout << endl;
         break;
@@ -110,20 +110,20 @@ void TreeNode::printChildrenId() {
     return;
     //child
     else{
-        std::cout<<" children: [";
-        std::cout<<this->child->nodeID<<" ";
+        cout<<" children: [";
+        cout<<this->child->nodeID<<" ";
         if(this->child->sibling==nullptr)
         return;
         //sibling
         else{
-            std::cout<<this->child->sibling->nodeID<<" ";
+            cout<<this->child->sibling->nodeID<<" ";
             TreeNode*currentsib=this->child->sibling->sibling;
             while(currentsib!=nullptr){
-                std::cout<<currentsib->nodeID<<" ";
+                cout<<currentsib->nodeID<<" ";
                 currentsib=currentsib->sibling;
             }
         }
-        std::cout<<" ]";
+        cout<<" ]";
     }
 }
 

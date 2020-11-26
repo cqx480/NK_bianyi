@@ -16,20 +16,48 @@ STRING \".+\"
 BOOL [0|1]
 
 IDENTIFIER [[:alpha:]_][[:alpha:][:digit:]_]*
+
+IF if
+WHILE while
+for for
+RETUEN return
+ADD \+
+SUB \-
+MUL \* 
+DIV \/
+MOD \%
+EQL \=
+NE <>
+LE <=
+LT \<
+GE >=
+GT \>
+EQ ==
+NEQ \!\=
+LBRACE \{
+RBRACE \}
+LBRACK \[
+RBRACK \]
+LPAREN \(
+RPAREN \)
+NOT \!
+OR \|\|
+AND &&
+
 %%
 
 {BLOCKCOMMENT}  /* do nothing */
 {LINECOMMENT}  /* do nothing */
 
 
-"int" return T_INT;
-"bool" return T_BOOL;
-"char" return T_CHAR;
-"string" return T_STRING;
+"int"       return T_INT;
+"bool"      return T_BOOL;
+"char"      return T_CHAR;
+"string"    return T_STRING;
 
-"=" return LOP_ASSIGN;
+"="         return LOP_ASSIGN;
 
-";" return  SEMICOLON;
+";"         return  SEMICOLON;
 
 {INTEGER} {
     TreeNode* node = new TreeNode(lineno, NODE_CONST);

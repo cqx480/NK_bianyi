@@ -8,7 +8,16 @@
 %}
 %token T_CHAR T_INT T_STRING T_BOOL 
 
-%token LOP_ASSIGN 
+%token IF WHILE FOR RETURN
+
+%token ADD SUB
+%token MUL DIV MOD
+
+%token LOP_ASSIGN NE LE LT GE GT EQ NEQ
+
+%token LBRACE RBRACE LBRACK RBRACK LPAREN RPAREN
+
+%token NOT OR AND 
 
 %token SEMICOLON
 
