@@ -1,30 +1,29 @@
 #include "tree.h"
-void TreeNode::addChild(TreeNode* child){
-    if(this->child==NULL){
-        this->child =child;
+void TreeNode::addChild(TreeNode* child) {
+    if (this->child == nullptr) {
+        this->child = child;
     }
-    else
-    {
+    else {
         this->child->addSibling(child);
     }
 }
 
-void TreeNode::addSibling(TreeNode* sibling){
-    TreeNode* currentsib=this->sibling;
-    if(currentsib == nullptr){
+void TreeNode::addSibling(TreeNode* sibling) {
+    TreeNode* currentsib = this->sibling;
+    if (currentsib == nullptr)
         this->sibling = sibling;
-    }
-    else{
-        while(currentsib!=NULL){
-            currentsib =currentsib->sibling;
+    else {
+        while (currentsib->sibling != nullptr) {
+
+            currentsib = currentsib->sibling;
         }
-        currentsib = sibling;
+        currentsib->sibling = sibling;
     }
 }
 
 TreeNode::TreeNode(int lineno, NodeType type) {
-    this->lineno=lineno;
-    this->nodeType=type;
+    this->lineno = lineno;
+    this->nodeType = type;
 }
 
 void TreeNode::genNodeId() {
@@ -106,24 +105,25 @@ void TreeNode::printNodeInfo() {
 }
 
 void TreeNode::printChildrenId() {
-    if(this->child==nullptr)
-    return;
-    //child
-    else{
-        cout<<" children: [";
-        cout<<this->child->nodeID<<" ";
-        if(this->child->sibling==nullptr)
+    if (this->child == nullptr)
         return;
+    //child
+    else {
+        cout << " children: [";
+        cout << this->child->nodeID << " ";
+        if (this->child->sibling == nullptr)
+            return;
         //sibling
-        else{
-            cout<<this->child->sibling->nodeID<<" ";
-            TreeNode*currentsib=this->child->sibling->sibling;
-            while(currentsib!=nullptr){
-                cout<<currentsib->nodeID<<" ";
-                currentsib=currentsib->sibling;
+        else {
+            cout << this->child->sibling->nodeID << " ";
+            TreeNode* currentsib = this->child->sibling->sibling;
+            while (currentsib != nullptr)
+            {
+                cout << currentsib->nodeID << " ";
+                currentsib = currentsib->sibling;
             }
         }
-        cout<<" ]";
+        cout << " ]";
     }
 }
 
@@ -135,62 +135,66 @@ void TreeNode::printAST() {
     this->sibling->printAST();
 }
 
-
 // You can output more info...
 void TreeNode::printSpecialInfo() {
-    switch(this->nodeType){
-        case NODE_CONST:
-            break;
-        case NODE_VAR:
-            break;
-        case NODE_EXPR:
-            break;
-        case NODE_STMT:
-            break;
-        case NODE_TYPE:
-            break;
-        default:
-            break;
+    switch (this->nodeType) {
+    case NODE_CONST:
+        break;
+    case NODE_VAR:
+        break;
+    case NODE_EXPR:
+        break;
+    case NODE_STMT:
+        break;
+    case NODE_TYPE:
+        break;
+    default:
+        break;
     }
 }
 
 string TreeNode::sType2String(StmtType type) {
-    switch(type){
-        case STMT_SKIP:
-            return"skip";
-            break;
-        case STMT_DECL:
-            return "decl";
-            break;
-        default:
-            break;
+    switch (type) {
+    case STMT_SKIP:
+        return"skip";
+        break;
+    case STMT_DECL:
+        return "decl";
+        break;
+    case STMT_ASSIGN:
+        return "assign";
+        break;
+    case STMT_IF:
+        return "if";
+        break;
+    default:
+        break;
     }
     return "?";
 }
 
-
-string TreeNode::nodeType2String (NodeType type){
-    switch(type){
-        case NODE_CONST:
-            return "const";
-            break;
-        case NODE_VAR:
-            return "variable";
-            break;
-        case NODE_EXPR:
-            return "expression";
-            break;
-        case NODE_TYPE:
-            return "type";
-            break;
-        case NODE_STMT:
-            return "statement";
-            break; 
-        case NODE_PROG:
-            return "program";
-            break;                                               
-        default:
-        return "<>";
-            break;
+string TreeNode::nodeType2String(NodeType type) {
+    switch (type) {
+    case NODE_CONST:
+        return"const";
+        break;
+    case NODE_VAR:
+        return "variable";
+        break;
+    case NODE_EXPR:
+        return "expression";
+        break;
+    case NODE_TYPE:
+        return "type";
+        break;
+    case NODE_STMT:
+        return "statement";
+        break;
+    case NODE_PROG:
+        return "program";
+        break;
+    default:
+        return"<>";
+        break;
     }
 }

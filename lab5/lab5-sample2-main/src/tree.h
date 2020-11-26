@@ -9,7 +9,7 @@ enum NodeType
     NODE_CONST, 
     NODE_VAR,
     NODE_EXPR,
-    NODE_TYPE,
+    NODE_TYPE, 
 
     NODE_STMT,
     NODE_PROG,
@@ -22,24 +22,25 @@ enum OperatorType
     OP_LE,  // <=
     OP_GT,  //>
     OP_GE,  //>=
-    OP_NE,  //!=
+    OP_NEQ,  //!=
 
     OP_ADD, //\+
     OP_MINUS, //\-
-    OP_MULTI, //\*
+    OP_MUL, //\*
     OP_DIV,   //\/
     OP_MOD,   //\%
 
-    OP_NOT, //
+    OP_NOT, //!
     OP_AND, //&&
-    OP_OR   //\|\|
+    OP_OR,   //\|\|
 };
 
 enum StmtType {
     STMT_SKIP,
     STMT_DECL,
     STMT_IF,
-    STMT_WHILE
+    STMT_WHILE,
+    STMT_ASSIGN,
 }
 ;
 
@@ -66,14 +67,14 @@ public:
     void genNodeId();
 
 public:
-    OperatorType optype;  // 如果是表达式
-    Type* type;  // 变量、类型、表达式结点，有类型。
+    OperatorType optype;    // 如果是表达式
+    Type* type;             // 变量、类型、表达式结点，有类型。
     StmtType stype;
     int int_val;
     char ch_val;
     bool b_val;
     string str_val;
-    string var_name;
+    string var_name;        //NODE_VAR
 public:
     static string nodeType2String (NodeType type);
     static string opType2String (OperatorType type);

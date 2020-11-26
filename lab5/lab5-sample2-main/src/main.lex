@@ -10,39 +10,10 @@ EOL	(\r\n|\r|\n)
 WHILTESPACE [[:blank:]]
 
 INTEGER [0-9]+
-
 CHAR \'.?\'
 STRING \".+\"
 BOOL [0|1]
-
 IDENTIFIER [[:alpha:]_][[:alpha:][:digit:]_]*
-
-IF if
-WHILE while
-for for
-RETUEN return
-ADD \+
-SUB \-
-MUL \* 
-DIV \/
-MOD \%
-EQL \=
-NE <>
-LE <=
-LT \<
-GE >=
-GT \>
-EQ ==
-NEQ \!\=
-LBRACE \{
-RBRACE \}
-LBRACK \[
-RBRACK \]
-LPAREN \(
-RPAREN \)
-NOT \!
-OR \|\|
-AND &&
 
 %%
 
@@ -50,14 +21,38 @@ AND &&
 {LINECOMMENT}  /* do nothing */
 
 
-"int"       return T_INT;
-"bool"      return T_BOOL;
-"char"      return T_CHAR;
-"string"    return T_STRING;
+"int" return T_INT;
+"bool" return T_BOOL;
+"char" return T_CHAR;
+"string" return T_STRING;
+
+"if"        return IF;
+"else"      return ELSE;
+"while"     return WHILE;
+"for"       return FOR;
+"return"    return RETURN;
+
+"=="        return EQ;
+"!="        return NEQ;
+"<="        return LE;
+"<"         return LT;
+">="        return GE;
+">"         return GT;
 
 "="         return LOP_ASSIGN;
+"+"         return ADD;
+"-"         return MINUS;
+"*"         return MUL;
+"/"         return DIV;
+"%"         return MOD;
 
-";"         return  SEMICOLON;
+";"         return SEMICOLON;
+"{"         return LBRACE;
+"}"         return RBRACE;
+"["         return LBRACK;
+"]"         return RBRACK;
+"("         return LPAREN;
+")"         return RPAREN;
 
 {INTEGER} {
     TreeNode* node = new TreeNode(lineno, NODE_CONST);
@@ -70,11 +65,10 @@ AND &&
 {CHAR} {
     TreeNode* node = new TreeNode(lineno, NODE_CONST);
     node->type = TYPE_CHAR;
-    node->ch_val = yytext[1];
+    node->ch_val = yytext[1]; 
     yylval = node;
     return CHAR;
 }
-
 {STRING} {
     TreeNode* node = new TreeNode(lineno, NODE_CONST);
     node->type = TYPE_STRING;
@@ -82,7 +76,6 @@ AND &&
     yylval = node;
     return STRING;
 }
-
 {BOOL} {
     TreeNode* node = new TreeNode(lineno, NODE_CONST);
     node->type = TYPE_BOOL;
@@ -90,7 +83,6 @@ AND &&
     yylval = node;
     return BOOL;
 }
-
 {IDENTIFIER} {
     TreeNode* node = new TreeNode(lineno, NODE_VAR);
     node->var_name = string(yytext);
